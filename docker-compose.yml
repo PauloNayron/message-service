@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres
+    volumes:
+      - message_service:/var/lib/postgresql/message_service
+    environment:
+      POSTGRES_DB: message_service
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 1q2w3e4r
+    ports:
+      - "5432:5432"
+
+volumes:
+  message_service:
