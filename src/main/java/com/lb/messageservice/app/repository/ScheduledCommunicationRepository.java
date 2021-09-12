@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ScheduledMessageRepository extends CrudRepository<CommunicationDAO, String> {
+public interface ScheduledCommunicationRepository extends CrudRepository<CommunicationDAO, String> {
 }

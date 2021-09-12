@@ -62,3 +62,7 @@ classDiagram
         +CommunicationChannel communicationChannel
     }
 ```
+
+## Rotas
+### Health Check
+http://localhost:9000/actuator/health

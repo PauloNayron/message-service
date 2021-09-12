@@ -6,6 +6,6 @@ public record Communication(
         Long id,
         String message,
         LocalDateTime sendDate,
-        Person recipient,
-        CommunicationChannel communicationChannel
+        Long recipient,
+        Channel channel
 ) {}
