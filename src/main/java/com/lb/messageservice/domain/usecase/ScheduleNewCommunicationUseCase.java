@@ -1,17 +1,17 @@
 package com.lb.messageservice.domain.usecase;
 
-import com.lb.messageservice.app.repository.ScheduledCommunicationRepository;
-import com.lb.messageservice.app.repository.dao.CommunicationDAO;
-import com.lb.messageservice.domain.entity.Communication;
+import com.lb.messageservice.app.repository.ScheduledReportRepository;
+import com.lb.messageservice.app.repository.dao.ReportDAO;
+import com.lb.messageservice.domain.entity.Report;
 import org.springframework.stereotype.Service;
 
 @Service
 public record ScheduleNewCommunicationUseCase(
-        ScheduledCommunicationRepository scheduledCommunicationRepository
+        ScheduledReportRepository scheduledReportRepository
 ) {
-    public Communication execute(Communication communication) {
-        var dao = CommunicationDAO.fromCommunication(communication);
-        scheduledCommunicationRepository.save(dao);
-        return dao.toCommunication();
+    public Report execute(Report report) {
+        var dao = ReportDAO.fromReport(report);
+        scheduledReportRepository.save(dao);
+        return dao.toReport();
     }
 }

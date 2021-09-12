@@ -14,7 +14,7 @@ sequenceDiagram
     A-->>C: CREATED {}
 ```
 
-### Use Case 2: *Consultation of communication submission*
+### Use Case 2: *Consultation of report submission*
 ```mermaid
 sequenceDiagram
     participant C as Client
@@ -27,7 +27,7 @@ sequenceDiagram
     A-->>C: OK {}
 ```
 
-### Use Case 3: *Cancellation of sending the communication*
+### Use Case 3: *Cancellation of sending the report*
 ```mermaid
 sequenceDiagram
     participant C as Client

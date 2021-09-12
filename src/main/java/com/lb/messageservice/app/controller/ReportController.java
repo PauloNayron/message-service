@@ -1,7 +1,7 @@
 package com.lb.messageservice.app.controller;
 
-import com.lb.messageservice.app.controller.dto.CommunicationDTO;
-import com.lb.messageservice.domain.entity.Communication;
+import com.lb.messageservice.app.controller.dto.ReportDTO;
+import com.lb.messageservice.domain.entity.Report;
 import com.lb.messageservice.domain.usecase.ScheduleNewCommunicationUseCase;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -12,19 +12,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("communication")
-public record CommunicationController(
+public record ReportController(
         ScheduleNewCommunicationUseCase scheduleNewCommunicationUseCase
 ) {
     @PostMapping
-    public ResponseEntity<CommunicationDTO> postCommunication(@RequestBody @Validated CommunicationDTO dto) {
-        Communication communication = null;
+    public ResponseEntity<ReportDTO> postCommunication(@RequestBody @Validated ReportDTO dto) {
+        Report report = null;
         try {
-            communication = dto.toCommunication();
+            report = dto.toCommunication();
         } catch (Exception e) {
             ResponseEntity.badRequest().body(e.getMessage());
         }
-        communication = scheduleNewCommunicationUseCase.execute(communication);
-        CommunicationDTO.fromCommunication(communication);
+        report = scheduleNewCommunicationUseCase.execute(report);
+        ReportDTO.fromCommunication(report);
         return ResponseEntity.accepted().body(dto);
     }
 }

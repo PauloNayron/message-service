@@ -1,9 +1,9 @@
 package com.lb.messageservice.app.repository;
 
-import com.lb.messageservice.app.repository.dao.CommunicationDAO;
+import com.lb.messageservice.app.repository.dao.ReportDAO;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ScheduledCommunicationRepository extends CrudRepository<CommunicationDAO, String> {
+public interface ScheduledReportRepository extends CrudRepository<ReportDAO, String> {
 }
