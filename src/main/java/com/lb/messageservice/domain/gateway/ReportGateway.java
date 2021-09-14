@@ -8,4 +8,6 @@ public interface ReportGateway {
     Report save(Report report);
 
     Optional<Report> find(Report report);
+
+    Optional<Report> findById(Long reportId);
 }

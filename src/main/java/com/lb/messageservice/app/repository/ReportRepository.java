@@ -18,4 +18,6 @@ public interface ReportRepository extends CrudRepository<ReportDAO, String> {
             @Param("message") String message,
             @Param("recipient") Long recipient,
             @Param("sendDate") LocalDateTime send_date);
+
+    Optional<ReportDAO> findById(Long reportId);
 }

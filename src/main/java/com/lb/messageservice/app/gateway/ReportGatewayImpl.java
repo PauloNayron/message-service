@@ -33,4 +33,9 @@ public record ReportGatewayImpl(
                 ReportGatewayImpl.class));
         return op.map(ReportDAO::toReport);
     }
+
+    @Override
+    public Optional<Report> findById(Long reportId) {
+        return repository.findById(reportId).map(ReportDAO::toReport);
+    }
 }
