@@ -14,6 +14,18 @@ sequenceDiagram
     A-->>C: CREATED {}
 ```
 
+````shell
+curl --location --request POST 'localhost:9000/report' \
+--header 'correlationId: 83b868e2-9a61-45d2-86e0-549609c38938' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "recipient": 1,
+    "send_date": "2022-02-01T00:00:00",
+    "message": "Feliz Ano Novo!",
+    "channel": "WHATSAPP"
+}'
+````
+
 ### Use Case 2: *Consultation of report submission*
 ```mermaid
 sequenceDiagram
@@ -65,4 +77,6 @@ classDiagram
 
 ## Rotas
 ### Health Check
-http://localhost:9000/actuator/health
+```shell
+curl --location --request GET 'http://localhost:9000/actuator/health'
+```

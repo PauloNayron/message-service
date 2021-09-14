@@ -5,6 +5,8 @@ import com.lb.messageservice.app.commons.ChannelType;
 import com.lb.messageservice.domain.entity.Report;
 import lombok.Builder;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 
 @Builder
