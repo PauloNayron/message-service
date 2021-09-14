@@ -2,7 +2,7 @@ package com.lb.messageservice.app.repository.dao;
 
 import com.lb.messageservice.app.commons.ChannelType;
 import com.lb.messageservice.domain.entity.Report;
-import com.lb.messageservice.domain.entity.EmailChannel;
+import com.lb.messageservice.domain.entity.channels.EmailChannel;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;

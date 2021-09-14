@@ -1,6 +1,10 @@
 package com.lb.messageservice.app.commons;
 
 import com.lb.messageservice.domain.entity.*;
+import com.lb.messageservice.domain.entity.channels.EmailChannel;
+import com.lb.messageservice.domain.entity.channels.PushChannel;
+import com.lb.messageservice.domain.entity.channels.SmsChannel;
+import com.lb.messageservice.domain.entity.channels.WhatsappChannel;
 
 public enum ChannelType {
     EMAIL,
