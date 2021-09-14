@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 
-import java.util.Arrays;
+import java.util.List;
 
 @SpringBootApplication
 public class MessageServiceApplication {
@@ -16,10 +16,10 @@ public class MessageServiceApplication {
 	}
 
 	@Bean
-	public FilterRegistrationBean correlationHeaderFilter() {
-		FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
+	public FilterRegistrationBean<CorrelationHeaderFilter> correlationHeaderFilter() {
+		var filterRegistrationBean = new FilterRegistrationBean<CorrelationHeaderFilter>();
 		filterRegistrationBean.setFilter(new CorrelationHeaderFilter());
-		filterRegistrationBean.setUrlPatterns(Arrays.asList("/*"));
+		filterRegistrationBean.setUrlPatterns(List.of("/*"));
 		return filterRegistrationBean;
 	}
 }
