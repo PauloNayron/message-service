@@ -28,20 +28,6 @@ public class ReportDAO {
     @CreationTimestamp private LocalDateTime createdAt;
     @UpdateTimestamp private LocalDateTime updatedAt;
 
-    static public ReportDAO fromReport(Report report) {
-        return ReportDAO.builder()
-                .id(report.id())
-                .message(report.message())
-                .sendDate(report.sendDate())
-                .recipient(report.recipient())
-                .channel(ChannelType.valueOf(report.channel().name()))
-                .status(report.status())
-                .build();
-    }
-
-    public Report toReport() {
-        return new Report(this.id, this.message, this.sendDate, this.recipient, this.getChannel().toClass(), this.status);
-    }
 
     @Override
     public boolean equals(Object o) {
