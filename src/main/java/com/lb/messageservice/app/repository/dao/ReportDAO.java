@@ -1,8 +1,10 @@
 package com.lb.messageservice.app.repository.dao;
 
 import com.lb.messageservice.app.commons.ChannelType;
+import com.lb.messageservice.domain.entity.Channel;
 import com.lb.messageservice.domain.entity.Report;
 import com.lb.messageservice.domain.entity.channels.EmailChannel;
+import com.lb.messageservice.domain.entity.enums.Status;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -24,6 +26,7 @@ public class ReportDAO {
     private LocalDateTime sendDate;
     private Long recipient;
     private ChannelType channel;
+    private Status status;
     @CreationTimestamp private LocalDateTime createdAt;
     @UpdateTimestamp private LocalDateTime updatedAt;
 
@@ -34,11 +37,12 @@ public class ReportDAO {
                 .sendDate(report.sendDate())
                 .recipient(report.recipient())
                 .channel(ChannelType.valueOf(report.channel().name()))
+                .status(report.status())
                 .build();
     }
 
     public Report toReport() {
-        return new Report(this.id, this.message, this.sendDate, this.recipient, new EmailChannel());
+        return new Report(this.id, this.message, this.sendDate, this.recipient, this.getChannel().toClass(), this.status);
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.lb.messageservice.app.repository;
 
-import com.lb.messageservice.app.commons.ChannelType;
 import com.lb.messageservice.app.repository.dao.ReportDAO;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
