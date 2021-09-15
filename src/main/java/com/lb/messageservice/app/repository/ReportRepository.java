@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Repository
 public interface ReportRepository extends CrudRepository<ReportDAO, String> {
-    @Query(value = "select * from report r where channel = :channel and message = :message and recipient = :recipient and send_date = :sendDate ", nativeQuery = true)
+    @Query(value = "select * from report r where channel = :channel and message = :message and recipient = :recipient and send_date = :sendDate and status <> 3", nativeQuery = true)
     Optional<ReportDAO> findReport(
             @Param("channel") Integer channel,
             @Param("message") String message,

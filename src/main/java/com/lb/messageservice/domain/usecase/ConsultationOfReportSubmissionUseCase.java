@@ -14,6 +14,6 @@ public record ConsultationOfReportSubmissionUseCase(
     public Report execute(Long reportId) {
         Optional<Report> op = reportGateway.findById(reportId);
         if (op.isPresent()) return op.get();
-        else throw new ReportNotFoundException("report does not exist, Id:".concat(reportId.toString()));
+        else throw new ReportNotFoundException("report does not exist");
     }
 }

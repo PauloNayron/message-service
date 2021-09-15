@@ -2,7 +2,6 @@ package com.lb.messageservice.app.controller;
 
 import com.lb.messageservice.app.commons.Loggable;
 import com.lb.messageservice.app.controller.dto.ReportDTO;
-import com.lb.messageservice.domain.entity.Report;
 import com.lb.messageservice.domain.usecase.CancellingReportSubmissionUseCase;
 import com.lb.messageservice.domain.usecase.ConsultationOfReportSubmissionUseCase;
 import com.lb.messageservice.domain.usecase.ScheduleNewCommunicationUseCase;
@@ -39,7 +38,7 @@ public record ReportController(
 
     @DeleteMapping("{id}")
     public ResponseEntity<ReportDTO> deleteReportById(@PathVariable Long id) {
-        info("Canceling report submission id".concat(id.toString()), ReportController.class);
+        info("Canceling report submission", ReportController.class);
         cancellingReportSubmissionUseCase.execute(id);
         return ResponseEntity.noContent().build();
     }

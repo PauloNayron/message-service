@@ -15,6 +15,6 @@ public record CancellingReportSubmissionUseCase(
         if (report.isPresent()) {
             var updatedStatus = report.get().updateStatus(Status.CANCELED);
             reportGateway.save(updatedStatus);
-        } else throw new ReportNotFoundException("report does not exist, Id:".concat(reportId.toString()));
+        } else throw new ReportNotFoundException("report does not exist");
     }
 }
