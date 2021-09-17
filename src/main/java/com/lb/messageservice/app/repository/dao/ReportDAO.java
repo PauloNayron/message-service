@@ -1,7 +1,6 @@
 package com.lb.messageservice.app.repository.dao;
 
 import com.lb.messageservice.app.commons.ChannelType;
-import com.lb.messageservice.domain.entity.Report;
 import com.lb.messageservice.domain.entity.enums.Status;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -19,7 +18,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @Table(name = "report")
 public class ReportDAO {
-    @Id @GeneratedValue(strategy = GenerationType.SEQUENCE) private Long id;
+    @Id @GeneratedValue(strategy = GenerationType.AUTO) private Long id;
     private String message;
     private LocalDateTime sendDate;
     private Long recipient;

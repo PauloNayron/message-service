@@ -6,13 +6,13 @@ import com.lb.messageservice.domain.entity.channels.EmailChannel;
 import com.lb.messageservice.domain.entity.channels.PushChannel;
 import com.lb.messageservice.domain.entity.channels.SmsChannel;
 import com.lb.messageservice.domain.entity.channels.WhatsappChannel;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.EnumMap;
 
 import static com.lb.messageservice.app.commons.ChannelType.*;
 
-@Component
+@Service
 public class ChannelFactory {
     private final EnumMap<ChannelType, Channel> mapChannel = new EnumMap<>(ChannelType.class);
 

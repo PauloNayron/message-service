@@ -8,9 +8,13 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public record ConsultationOfReportSubmissionUseCase(
-        ReportGateway reportGateway
-) {
+public class ConsultationOfReportSubmissionUseCase {
+    private ReportGateway reportGateway;
+
+    public ConsultationOfReportSubmissionUseCase(ReportGateway reportGateway) {
+        this.reportGateway = reportGateway;
+    }
+
     public Report execute(Long reportId) {
         Optional<Report> op = reportGateway.findById(reportId);
         if (op.isPresent()) return op.get();

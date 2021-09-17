@@ -6,17 +6,18 @@ import com.lb.messageservice.app.service.ChannelMapper;
 import com.lb.messageservice.domain.usecase.CancellingReportSubmissionUseCase;
 import com.lb.messageservice.domain.usecase.ConsultationOfReportSubmissionUseCase;
 import com.lb.messageservice.domain.usecase.ScheduleNewCommunicationUseCase;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("report")
-public record ReportController(
-        ChannelMapper channelMapper,
-        ScheduleNewCommunicationUseCase scheduleNewCommunicationUseCase,
-        ConsultationOfReportSubmissionUseCase consultationOfReportSubmissionUseCase,
-        CancellingReportSubmissionUseCase cancellingReportSubmissionUseCase
-) implements Loggable {
+public class ReportController implements Loggable {
+    private final ChannelMapper channelMapper;
+    private final ScheduleNewCommunicationUseCase scheduleNewCommunicationUseCase;
+    private final ConsultationOfReportSubmissionUseCase consultationOfReportSubmissionUseCase;
+    private final CancellingReportSubmissionUseCase cancellingReportSubmissionUseCase;
 
     @PostMapping
     public ResponseEntity<ReportDTO> postReport(@RequestBody ReportDTO dto) {
@@ -44,4 +45,5 @@ public record ReportController(
         cancellingReportSubmissionUseCase.execute(id);
         return ResponseEntity.noContent().build();
     }
+
 }

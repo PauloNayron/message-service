@@ -7,8 +7,9 @@ import com.lb.messageservice.domain.entity.Report;
 import com.lb.messageservice.domain.entity.enums.Status;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 @RequiredArgsConstructor
 public class ChannelMapper {
     private final ChannelFactory channelFactory;
