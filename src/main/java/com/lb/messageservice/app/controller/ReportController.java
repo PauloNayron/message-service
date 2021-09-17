@@ -7,12 +7,14 @@ import com.lb.messageservice.domain.usecase.CancellingReportSubmissionUseCase;
 import com.lb.messageservice.domain.usecase.ConsultationOfReportSubmissionUseCase;
 import com.lb.messageservice.domain.usecase.ScheduleNewCommunicationUseCase;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-@RestControllerAdvice
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("report")
 public class ReportController implements Loggable {
@@ -22,7 +24,7 @@ public class ReportController implements Loggable {
     private final CancellingReportSubmissionUseCase cancellingReportSubmissionUseCase;
 
     @PostMapping
-    public @ResponseBody ResponseEntity<ReportDTO> postReport(@RequestBody ReportDTO dto) {
+    public HttpEntity<ReportDTO> postReport(@RequestBody ReportDTO dto) {
         var report = channelMapper.toReport(dto);
         info("dto successfully converted into entity", ReportController.class);
 
@@ -31,7 +33,7 @@ public class ReportController implements Loggable {
                 ReportController.class);
         dto = channelMapper.fromReport2Dto(report);
 
-        dto.add(linkTo(ReportController.class).slash(getReportById(dto.getId())).withSelfRel());
+        dto.add(linkTo(methodOn(ReportController.class).getReportById(dto.getId())).withSelfRel());
         return ResponseEntity.accepted().body(dto);
     }
 

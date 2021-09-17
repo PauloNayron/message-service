@@ -1,5 +1,19 @@
 # Message Service
 
+## Executar projeto
+- Execute o docker compose
+```shell
+docker-compose up
+```
+- Adicione as variáveis de ambiente (execução e testes)
+```
+SERVER_PORT=9000
+
+DATASOURCE_URL=jdbc:postgresql://localhost:5432/message_service
+DATASOURCE_USERNAME=admin
+DATASOURCE_PASSWORD=1q2w3e4r
+```
+
 ## Use cases
 ### Use Case 1: *Communication Send Scheduling*
 ```mermaid

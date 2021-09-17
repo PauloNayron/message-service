@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ReportDTO extends RepresentationModel<ReportDTO> {
-    private Long id;
+    @JsonProperty("id") private Long id;
     @JsonProperty("recipient")
     private @NotBlank Long recipient;
     @JsonProperty("send_date")
