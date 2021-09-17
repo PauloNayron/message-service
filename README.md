@@ -14,7 +14,7 @@ sequenceDiagram
     A-->>C: CREATED {}
 ```
 
-````shell
+```shell
 curl --location --request POST 'localhost:9000/report' \
 --header 'correlationId: 83b868e2-9a61-45d2-86e0-549609c38938' \
 --header 'Content-Type: application/json' \
@@ -24,7 +24,7 @@ curl --location --request POST 'localhost:9000/report' \
     "message": "Feliz Ano Novo!",
     "channel": "WHATSAPP"
 }'
-````
+```
 
 ### Use Case 2: *Consultation of report submission*
 ```mermaid
@@ -37,6 +37,10 @@ sequenceDiagram
     A->>B: recupera(id)
     B-->>A: {}
     A-->>C: OK {}
+```
+
+```shell
+curl --location --request GET 'localhost:9000/report/1'
 ```
 
 ### Use Case 3: *Cancellation of sending the report*
@@ -52,14 +56,15 @@ sequenceDiagram
     A-->>C: NOT CONTENT {}
 ```
 
+```shell
+curl --location --request DELETE 'localhost:9000/report/1'
+```
+
+## Class Diagram
 ```mermaid
 classDiagram
-    class User {
-        +Long id
-        +String name
-    }
-    class CommunicationChannel {
-        <<enumeration>>
+    class Channel {
+        <<interface>>
         EMAIL
         SMS
         PUSH
@@ -67,11 +72,11 @@ classDiagram
     }
     class Communication{
         +Long id
-        +LocalDateTime 
         +String message
-        +User sender
-        +User recipient
-        +CommunicationChannel communicationChannel
+        +LocalDateTime sendDate
+        +Long recipient
+        +Channel channel
+        +Status status
     }
 ```
 
@@ -80,3 +85,6 @@ classDiagram
 ```shell
 curl --location --request GET 'http://localhost:9000/actuator/health'
 ```
+
+### Open API
+> http://localhost:9000/swagger-ui.html

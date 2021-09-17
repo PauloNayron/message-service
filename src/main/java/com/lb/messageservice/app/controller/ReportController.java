@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+
 @RestControllerAdvice
 @RequiredArgsConstructor
 @RequestMapping("report")
@@ -20,7 +22,7 @@ public class ReportController implements Loggable {
     private final CancellingReportSubmissionUseCase cancellingReportSubmissionUseCase;
 
     @PostMapping
-    public ResponseEntity<ReportDTO> postReport(@RequestBody ReportDTO dto) {
+    public @ResponseBody ResponseEntity<ReportDTO> postReport(@RequestBody ReportDTO dto) {
         var report = channelMapper.toReport(dto);
         info("dto successfully converted into entity", ReportController.class);
 
@@ -28,10 +30,12 @@ public class ReportController implements Loggable {
         info("report scheduled successfully { id:%d, send_date:%s }".formatted(report.id(), report.sendDate()),
                 ReportController.class);
         dto = channelMapper.fromReport2Dto(report);
+
+        dto.add(linkTo(ReportController.class).slash(getReportById(dto.getId())).withSelfRel());
         return ResponseEntity.accepted().body(dto);
     }
 
-    @GetMapping("{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<ReportDTO> getReportById(@PathVariable Long id) {
         info("retrieving report from id ".concat(id.toString()), ReportController.class);
         var report = consultationOfReportSubmissionUseCase.execute(id);

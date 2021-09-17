@@ -15,16 +15,17 @@ public class ChannelMapper {
 
     public Report toReport(ReportDTO dto) {
         return new Report(null,
-                dto.message(),
-                dto.sendDate(),
-                dto.recipient(),
-                channelFactory.findByChannel(dto.channel()),
+                dto.getMessage(),
+                dto.getSendDate(),
+                dto.getRecipient(),
+                channelFactory.findByChannel(dto.getChannel()),
                 Status.SCHEDULED);
     }
 
     public ReportDTO fromReport2Dto(Report report) {
         return new ReportDTO(
                 report.id(),
+                report.recipient(),
                 report.sendDate(),
                 report.message(),
                 ChannelType.valueOf(report.channel().name()),

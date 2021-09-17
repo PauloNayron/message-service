@@ -34,6 +34,7 @@ public class ReportMocked {
     public static ReportDTO reportDtoScheduled =
             new ReportDTO(
                     1l,
+                    1l,
                     localDateTime,
                     "Feliz Ano Novo!",
                     ChannelType.SMS,

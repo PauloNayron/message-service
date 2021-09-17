@@ -29,11 +29,11 @@ class ChannelMapperTest {
         // exec
         var result = channelMapper.toReport(dto);
         // should
-        assertThat(result.message()).isEqualTo(dto.message());
-        assertThat(result.sendDate()).isEqualTo(dto.sendDate());
-        assertThat(result.recipient()).isEqualTo(dto.recipient());
-        assertThat(result.channel().name()).isEqualTo(dto.channel().toString());
-        assertThat(result.status()).isEqualTo(dto.status());
+        assertThat(result.message()).isEqualTo(dto.getMessage());
+        assertThat(result.sendDate()).isEqualTo(dto.getSendDate());
+        assertThat(result.recipient()).isEqualTo(dto.getRecipient());
+        assertThat(result.channel().name()).isEqualTo(dto.getChannel().toString());
+        assertThat(result.status()).isEqualTo(dto.getStatus());
     }
 
     @Test
@@ -44,11 +44,11 @@ class ChannelMapperTest {
         // exec
         var result = channelMapper.fromReport2Dto(report);
         // should
-        assertThat(result.message()).isEqualTo(report.message());
-        assertThat(result.sendDate()).isEqualTo(report.sendDate());
-        assertThat(result.recipient()).isEqualTo(report.recipient());
-        assertThat(result.channel().toString()).isEqualTo(report.channel().name());
-        assertThat(result.status()).isEqualTo(report.status());
+        assertThat(result.getMessage()).isEqualTo(report.message());
+        assertThat(result.getSendDate()).isEqualTo(report.sendDate());
+        assertThat(result.getRecipient()).isEqualTo(report.recipient());
+        assertThat(result.getChannel().toString()).isEqualTo(report.channel().name());
+        assertThat(result.getStatus()).isEqualTo(report.status());
     }
 
     @Test
