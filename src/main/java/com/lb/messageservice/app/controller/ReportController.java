@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@RestControllerAdvice
 @RequiredArgsConstructor
 @RequestMapping("report")
 public class ReportController implements Loggable {
