@@ -42,11 +42,6 @@ class ReportControllerTest {
     @MockBean
     private CancellingReportSubmissionUseCase cancellingReportSubmissionUseCase;
 
-    @BeforeEach
-    public void setUp() {
-
-    }
-
     @Test
     @DisplayName("given a valid request body, it should return status 2xx")
     public void createReportSuccess() throws Exception {
