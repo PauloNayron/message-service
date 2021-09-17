@@ -2,7 +2,6 @@ package com.lb.messageservice.app.controller;
 
 import com.lb.messageservice.app.controller.dto.ReportDTO;
 import com.lb.messageservice.app.service.ChannelMapper;
-import com.lb.messageservice.domain.exception.ReportNotFoundException;
 import com.lb.messageservice.domain.usecase.CancellingReportSubmissionUseCase;
 import com.lb.messageservice.domain.usecase.ConsultationOfReportSubmissionUseCase;
 import com.lb.messageservice.domain.usecase.ScheduleNewCommunicationUseCase;

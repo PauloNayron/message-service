@@ -6,7 +6,6 @@ import com.lb.messageservice.app.repository.dao.ReportDAO;
 import com.lb.messageservice.domain.entity.Report;
 import com.lb.messageservice.domain.entity.enums.Status;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -44,14 +43,14 @@ public class ChannelMapper {
                     .build();
     }
 
-    public Report toReport(ReportDAO dto) {
+    public Report toReport(ReportDAO dao) {
         return new Report(
-                dto.getId(),
-                dto.getMessage(),
-                dto.getSendDate(),
-                dto.getRecipient(),
-                channelFactory.findByChannel(dto.getChannel()),
-                dto.getStatus()
+                dao.getId(),
+                dao.getMessage(),
+                dao.getSendDate(),
+                dao.getRecipient(),
+                channelFactory.findByChannel(dao.getChannel()),
+                dao.getStatus()
         );
     }
 }

@@ -2,19 +2,20 @@ package com.lb.messageservice.app.gateway;
 
 import com.lb.messageservice.app.commons.Loggable;
 import com.lb.messageservice.app.repository.ReportRepository;
-import com.lb.messageservice.app.repository.dao.ReportDAO;
 import com.lb.messageservice.app.service.ChannelMapper;
 import com.lb.messageservice.domain.entity.Report;
 import com.lb.messageservice.domain.gateway.ReportGateway;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public record ReportGatewayImpl(
-        ChannelMapper channelMapper,
-        ReportRepository repository
-) implements ReportGateway, Loggable {
+@RequiredArgsConstructor
+public final class ReportGatewayImpl implements ReportGateway, Loggable {
+    private final ChannelMapper channelMapper;
+    private final ReportRepository repository;
+
     @Override
     public Report save(Report report) {
         var dao = channelMapper.fromReport2Dao(report);
@@ -40,4 +41,5 @@ public record ReportGatewayImpl(
     public Optional<Report> findById(Long reportId) {
         return repository.findById(reportId).map(channelMapper::toReport);
     }
+
 }
