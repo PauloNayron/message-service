@@ -1,11 +1,11 @@
 # Message Service
 
-## Executar projeto
-- Execute o docker compose
+## Project Configuration
+- first step is to upload docker container with PostgreSql Database
 ```shell
 docker-compose up
 ```
-- Adicione as variáveis de ambiente (execução e testes)
+- second step is to add the environment variables, in your IDE of choice. I advise using Intellij IDEA.
 ```
 SERVER_PORT=9000
 
@@ -23,9 +23,24 @@ sequenceDiagram
     participant B as Postgres
 
     C->>A: POST: {}
+    activate A
+    alt non-existent report
+    A->>B: check if there is
+    activate B
+    B-->>A: void
+    deactivate B
     A->>B: save {}
+    activate B
     B-->>A: {}
+    deactivate B
+    else existing report
+    A->>B: check if there is
+    activate B
+    B-->>A: {}
+    deactivate B
+    end
     A-->>C: CREATED {}
+    deactivate A
 ```
 
 ```shell
@@ -48,9 +63,13 @@ sequenceDiagram
     participant B as Postgres
 
     C->>A: GET: /${id}
-    A->>B: recupera(id)
+    activate A
+    A->>B: get(id)
+    activate B
     B-->>A: {}
+    deactivate B
     A-->>C: OK {}
+    deactivate A
 ```
 
 ```shell
@@ -64,10 +83,14 @@ sequenceDiagram
     participant A as Service
     participant B as Postgres
 
-    C->>A: PUT: /${id} {}
-    A->>B: atualiza {}
+    C->>A: DELETE: /${id} {}
+    activate A
+    A->>B: update {}
+    activate B
     B-->>A: {}
+    deactivate B
     A-->>C: NOT CONTENT {}
+    deactivate A
 ```
 
 ```shell
@@ -79,18 +102,35 @@ curl --location --request DELETE 'localhost:9000/report/1'
 classDiagram
     class Channel {
         <<interface>>
-        EMAIL
-        SMS
-        PUSH
-        WHATSAPP
+        + name()
     }
-    class Communication{
+    class Report{
         +Long id
         +String message
         +LocalDateTime sendDate
         +Long recipient
         +Channel channel
         +Status status
+    }
+    Report .. Channel
+    Channel <|.. EmailChannel
+    Channel <|.. SmsChannel
+    Channel <|.. PushChannel
+    Channel <|.. WhatsappChannel
+```
+
+## Entity and Relationship
+```mermaid
+erDiagram
+    report {
+        int id
+        int channel
+        varchar message
+        bigint recipient
+        int status
+        timestamp send_date
+        timestamp created_at
+        timestamp update_at
     }
 ```
 
